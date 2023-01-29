@@ -4,6 +4,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const path = require('path');
 const cors = require('cors');
+
 const cron = require('node-cron');
 const fetchData = require('./script');
 // Cors
@@ -32,7 +33,7 @@ app.use(express.json());
 
 app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'ejs');
-
+app.use('/', require('./routes/home'));
 // Routes
 app.use('/api/files', require('./routes/files'));
 app.use('/files', require('./routes/show'));
