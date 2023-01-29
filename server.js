@@ -4,6 +4,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const path = require('path');
 const cors = require('cors');
+const cron = require('node-cron');
+const fetchData = require('./script');
 // Cors
 // const favicon = require('serve-favicon');
 
@@ -36,4 +38,9 @@ app.use('/api/files', require('./routes/files'));
 app.use('/files', require('./routes/show'));
 app.use('/files/download', require('./routes/download'));
 
+cron.schedule('*/59 * * * * *', async function () {
+  console.log('---------------------');
+  await fetchData();
+  console.log('running a task every 59 seconds');
+});
 app.listen(PORT, console.log(`Listening on port ${PORT}.`));
