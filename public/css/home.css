@@ -2,10 +2,10 @@
     /* --main-bg-color: #edf5fe;
   
     --light-blue: #03a9f4; */
-    --main-bg-color: #ecfd66;
-    --light-blue: #e9e222;
+    --main-bg-color: hsla(43, 89%, 86%, 0.694);
+    --light-blue: #fe7d05b3;
     /* --dark-blue: #f0f2d1; */
-    --border-color: #f0f2d1;
+    --border-color: #f5e0b7;
     --container-width: 500px;
   }
   
@@ -137,7 +137,7 @@
   
   .progress-container .bg-progress {
     position: absolute;
-    background: var(--main-bg-color);
+    background: var(--light-blue);
     width: 100%;
     height: 100%;
     z-index: 1;
@@ -246,7 +246,7 @@
     font-size: 18px;
     padding: 8px 40px;
     margin-top: 15px;
-    background: var(--main-bg-color);
+    background: var(--light-blue);
     border: none;
     border-radius: 5px;
     color: #161717;

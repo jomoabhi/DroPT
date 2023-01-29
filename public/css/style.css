@@ -1,7 +1,10 @@
 :root {
-    --main-bg-color: #ecfd66;
-    --light-blue: #e9e222;
-    --dark-blue: #f0f2d1;
+    /* --main-bg-color: #ecfd66;
+    --light-blue: #e9e222; */
+    --main-bg-color: #ffcd61b1;
+    --light-blue: #fe7d05b3;
+    /* --dark-blue: #f0f2d1; */
+    --dark-blue: #e1d0a9;
   }
 
   body {
