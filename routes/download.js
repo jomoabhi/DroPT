@@ -13,7 +13,7 @@ router.get('/:uuid', async (req, res) => {
   }
   const response = await file.save();
   // console.log(file.aws_path);
-  const file1 = fs.createWriteStream('file.jpg');
+  // const file1 = fs.createWriteStream('file.jpg');
   //   const request = https.get(file.aws_path, function (response) {
   //     response.pipe(file1);
 
