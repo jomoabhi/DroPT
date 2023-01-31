@@ -6,7 +6,7 @@
     --light-blue: #fe7d05b3;
     /* --dark-blue: #f0f2d1; */
     --border-color: #f5e0b7;
-    --container-width: 500px;
+    --container-width: 470px;
   }
   
   body {
@@ -15,7 +15,7 @@
     font-family: system-ui;
     background: var(--main-bg-color);
     height: 98vh;
-    overflow: hidden;
+    overflow: visible;
     width: auto;
   }
   
@@ -39,6 +39,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    
   }
   .upload-container,
   .drop-zone {
@@ -47,6 +48,14 @@
   
   .upload-container {
     background: #ffffff;
+    margin-top: 10px;
+    /* max-height: max-content; */
+    /* margin-top: 3%; */
+    /* margin-bottom: 8%; */
+    /* padding-top: 50px; */
+    padding-bottom: 20px;
+    /* margin-bottom: auto; */
+    /* max-height: 615.6px; */
     border-radius: 25px;
     box-shadow: 0px 20px 20px 0px #00000017;
   }
@@ -221,10 +230,12 @@
   .email-container label {
     margin: 5px;
     font-size: 18px;
+    color: #eabc49;
   }
   
   .email-container input {
     border: none;
+    margin-top: 10px;
     border-bottom: 2px solid var(--border-color);
     height: 19px;
     font-size: 18px;
@@ -251,6 +262,7 @@
     border-radius: 5px;
     color: #161717;
     cursor: pointer;
+    /* display: none; */
   }
   
   .toast {
@@ -274,7 +286,17 @@
     display: block;
     transform: translate(50%, 0);
   }
-  
+  .shareButton{
+    display: flex;
+    flex-direction: column;
+    padding: 8px 66px;
+    /* padding-bottom: 4px; */
+    margin-top: 15px;
+
+  }
+  .shareButton button{
+    margin-bottom: 7px;
+  }
   @media screen and (max-width: 900px) {
     :root {
       --container-width: 320px;
@@ -285,12 +307,21 @@
     .image-vector {
       display: none;
     }
+    .email-container label{
+      display: none;
+    }
     .email-container .filed {
       flex-direction: column;
     }
     .email-container .filed {
+      padding-top: 5px;
       width: 300px;
+      /* margin-bottom: 4px; */
     }
+    .email-container input{
+      margin-bottom: 5px;
+    }
+    
   }
 
  footer {
@@ -306,4 +337,6 @@ footer p {
     /* padding: 0 0; */
     text-align: center;
 }
-
+.dis{
+  display: none;
+}

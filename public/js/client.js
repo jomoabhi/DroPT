@@ -12,14 +12,21 @@ const sharingContainer = document.querySelector('.sharing-container');
 const copyURLBtn = document.querySelector('#copyURLBtn');
 const fileURL = document.querySelector('#fileURL');
 const emailForm = document.querySelector('#emailForm');
+const whatsAppForm = document.querySelector('#WhatsappForm');
+const whatsAppButton = document.getElementById('whatsBtn');
+const emailAppButton = document.getElementById('emailBtn');
 
 const toast = document.querySelector('.toast');
 
+const body = document.querySelector('.body');
+const whatsContainer = document.querySelector('#Whatsapp');
+const emailContainer = document.querySelector('#Email');
 const baseURL = 'http://localhost:3000';
 // const uploadURL = `${baseURL}/api/files`;
 const uploadURL = `/api/files`;
 // const emailURL = `${baseURL}/api/files/send`;
 const emailURL = `/api/files/send`;
+const whatsAppURL = `/api/files/sendWhatsapp`;
 
 const maxAllowedSize = 100 * 1024 * 1024; //100mb
 
@@ -130,6 +137,13 @@ const onFileUploadSuccess = (res) => {
   const { downloadLink: url } = JSON.parse(res);
   console.log(url);
   sharingContainer.style.display = 'block';
+  // whatsContainer.style.display = 'none';
+  // emailContainer.style.display = 'none';
+  whatsContainer.classList.add('dis');
+  emailContainer.classList.add('dis');
+
+  body.style.height = '105vh';
+
   fileURL.value = url;
 };
 
@@ -158,10 +172,69 @@ emailForm.addEventListener('submit', (e) => {
     .then((res) => res.json())
     .then((data) => {
       if (data.success) {
+        emailForm[2].innerText = 'Send';
+        emailForm[2].removeAttribute('disabled');
         showToast('Email Sent');
-        sharingContainer.style.display = 'none'; // hide the box
+
+        // sharingContainer.style.display = 'none'; // hide the box
+      }
+      if (data.error) {
+        emailForm[2].innerText = 'Send';
+        emailForm[2].removeAttribute('disabled');
+        showToast(data.error);
       }
     });
+});
+whatsAppForm.addEventListener('submit', (e) => {
+  e.preventDefault(); // stop submission
+  console.log('whats');
+  // disable the button
+  whatsAppForm[2].setAttribute('disabled', 'true');
+  whatsAppForm[2].innerText = 'Sending';
+
+  const url = fileURL.value;
+
+  const formData = {
+    uuid: url.split('/').splice(-1, 1)[0],
+    to: whatsAppForm.elements['to-number'].value,
+    senderName: whatsAppForm.elements['from-name'].value,
+  };
+  console.log(formData);
+  fetch(whatsAppURL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(formData),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.success) {
+        whatsAppForm[2].innerText = 'Send';
+        whatsAppForm[2].removeAttribute('disabled');
+        // whatsAppForm[2].setAttribute('disabled', 'false');
+        showToast('WhatsApp Message Sent');
+        // sharingContainer.style.display = 'none'; // hide the box
+      }
+      if (data.error) {
+        whatsAppForm[2].innerText = 'Send';
+        whatsAppForm[2].removeAttribute('disabled');
+        // whatsAppForm[2].setAttribute('disabled', 'false');
+        showToast(data.error);
+      }
+    });
+});
+
+whatsAppButton.addEventListener('click', (e) => {
+  console.log('clickedwh');
+  emailContainer.classList.add('dis');
+  whatsContainer.classList.remove('dis');
+});
+
+emailAppButton.addEventListener('click', (e) => {
+  console.log('clickedem');
+  whatsContainer.classList.add('dis');
+  emailContainer.classList.remove('dis');
 });
 
 let toastTimer;
